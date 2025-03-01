@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:g_news_app/controller/dashboard_page_controller.dart';
+// import 'package:g_news_app/controller/dashboard_page_controller.dart';
 import 'package:g_news_app/views/dashboard_page.dart';
 import 'package:get/get.dart';
 
@@ -30,9 +30,9 @@ class MyApp extends StatelessWidget {
       ),
       themeMode: ThemeMode.system,
       home: DashboardPage(),
-      initialBinding: BindingsBuilder(() {
-        Get.put(DashboardPageController());
-      }),
+      // initialBinding: BindingsBuilder(() {
+      //   Get.put(DashboardPageController());
+      // }),
     );
   }
 }

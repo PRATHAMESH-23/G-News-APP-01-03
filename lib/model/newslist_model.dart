@@ -1,19 +1,20 @@
 import 'dart:convert';
 
-NewsList newsListFromJson(String str) => NewsList.fromJson(json.decode(str));
+NewsListModel newsListModelFromJson(String str) =>
+    NewsListModel.fromJson(json.decode(str));
 
-String newsListToJson(NewsList data) => json.encode(data.toJson());
+String newsListModelToJson(NewsListModel data) => json.encode(data.toJson());
 
-class NewsList {
+class NewsListModel {
   final int? totalArticles;
   final List<Article>? articles;
 
-  NewsList({
+  NewsListModel({
     this.totalArticles,
     this.articles,
   });
 
-  factory NewsList.fromJson(Map<String, dynamic> json) => NewsList(
+  factory NewsListModel.fromJson(Map<String, dynamic> json) => NewsListModel(
         totalArticles: json["totalArticles"],
         articles: json["articles"] == null
             ? []
