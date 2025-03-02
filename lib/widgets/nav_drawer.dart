@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:g_news_app/views/dashboard_page.dart';
+import 'package:g_news_app/views/reading_history_page.dart';
 import 'package:get/get.dart';
-// import 'package:get/get.dart';
 
 class NavDrawer extends StatefulWidget {
-  const NavDrawer({super.key});
+  NavDrawer({super.key});
 
   @override
   State<NavDrawer> createState() => _NavDrawerState();
@@ -42,11 +41,18 @@ class _NavDrawerState extends State<NavDrawer> {
             Icons.home,
             onClicked: () {
               print("On Home button Clicked");
-              Get.to(() => DashboardPage());
+
               Navigator.of(context).pop();
             },
           ),
-          listCard("Reading History", Icons.history),
+          listCard(
+            "Reading History",
+            Icons.history,
+            onClicked: () {
+              Navigator.of(context).pop();
+              Get.to(() => ReadingHistoryPage());
+            },
+          ),
           Divider(),
           Padding(
             padding: const EdgeInsets.all(12.0),

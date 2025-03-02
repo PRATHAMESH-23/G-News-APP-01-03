@@ -9,6 +9,23 @@ class DashboardPageController extends GetxController {
   List<Article> articles = <Article>[].obs;
   NetworkService networkService = NetworkService();
   late DateTime date;
+  final categories = <String>[
+    'General',
+    'Business',
+    'Technology',
+    'Entertainment',
+    'Sports',
+    'Science',
+    'Health',
+  ].obs;
+
+  final selectedCategory = 'General'.obs; // Default selected category
+
+  void selectCategory(String category) async {
+    selectedCategory.value = category;
+    await getNewsListData();
+    print('Selected category: $category');
+  }
 
   @override
   void onInit() {
@@ -20,7 +37,9 @@ class DashboardPageController extends GetxController {
     isLoading.value = true; // Set loading to true
     try {
       print("Calling News API");
-      NewsListModel fetchedNews = await networkService.callNewsApi();
+      print(selectedCategory.value);
+      NewsListModel fetchedNews = await networkService
+          .callNewsApi(selectedCategory.value.toLowerCase());
       articles = fetchedNews.articles!;
     } catch (e) {
       print('Error fetching news: $e');

@@ -9,11 +9,12 @@ int max = 10;
 String baseUrl = 'https://gnews.io/api/v4/';
 
 class NetworkService {
-  Future<NewsListModel> callNewsApi() async {
+  Future<NewsListModel> callNewsApi(String category) async {
     print("In network service");
+    print("Category in call:$category");
     final response = await http.get(
       Uri.parse(
-          '${baseUrl}top-headlines?category=general&lang=$language&country=$country&max=$max&apikey=$newsApiKey'),
+          '${baseUrl}top-headlines?category=$category&lang=$language&country=$country&max=$max&apikey=$newsApiKey'),
     );
 
     if (response.statusCode == 200) {

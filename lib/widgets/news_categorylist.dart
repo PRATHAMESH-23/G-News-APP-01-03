@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:g_news_app/controller/dashboard_page_controller.dart';
+import 'package:get/get.dart';
 
 class NewsCategorylist extends StatelessWidget {
+  final DashboardPageController controller =
+      Get.find<DashboardPageController>();
   NewsCategorylist({super.key});
-  final List<String> categories = [
-    'General',
-    'Business',
-    'Technology',
-    'Entertainment',
-    'Sports',
-    'Science',
-    'Health',
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -20,24 +15,31 @@ class NewsCategorylist extends StatelessWidget {
         height: 50.0,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          itemCount: categories.length,
+          itemCount: controller.categories.length,
           itemBuilder: (context, index) {
+            final category = controller.categories[index];
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: ElevatedButton(
-                onPressed: () {
-                  print('Selected category: ${categories[index]}');
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor:
-                      Theme.of(context).colorScheme.secondaryContainer,
-                  foregroundColor:
-                      Theme.of(context).colorScheme.onSecondaryContainer,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30.0),
+              child: Obx(
+                () => ElevatedButton(
+                  onPressed: () {
+                    controller.selectCategory(category);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor:
+                        controller.selectedCategory.value == category
+                            ? Theme.of(context).colorScheme.primary
+                            : Theme.of(context).colorScheme.secondaryContainer,
+                    foregroundColor: controller.selectedCategory.value ==
+                            category
+                        ? Theme.of(context).colorScheme.onPrimary
+                        : Theme.of(context).colorScheme.onSecondaryContainer,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
                   ),
+                  child: Text(category),
                 ),
-                child: Text(categories[index]),
               ),
             );
           },
