@@ -38,7 +38,20 @@ class NewsCategorylist extends StatelessWidget {
                       borderRadius: BorderRadius.circular(30.0),
                     ),
                   ),
-                  child: Text(category),
+                  child: Row(
+                    children: [
+                      if (controller.selectedCategory.value == category)
+                        Icon(
+                          Icons.check_circle,
+                          color: Colors.white,
+                          size: 25,
+                        ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Text(category),
+                    ],
+                  ),
                 ),
               ),
             );

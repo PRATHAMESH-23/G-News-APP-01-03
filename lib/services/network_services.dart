@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:g_news_app/model/newslist_model.dart';
 import 'package:http/http.dart' as http;
 
-String newsApiKey = "4cb845a37afd04f2fc98b3344724a8a4";
+String newsApiKey = "#4cb845a37afd04f2fc98b3344724a8a4#";
 String language = "en";
 String country = "IN";
 int max = 10;
