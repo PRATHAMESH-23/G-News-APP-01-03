@@ -19,7 +19,7 @@ class NetworkService {
     if (response.statusCode == 200) {
       final newsData = json.decode(response.body);
       print('Decoded news data: $newsData');
-      if (newsData['articles'] != null) {
+      if (newsData.toString().isNotEmpty) {
         return NewsListModel.fromJson(jsonDecode(response.body));
       } else {
         throw Exception('Articles not found in response');

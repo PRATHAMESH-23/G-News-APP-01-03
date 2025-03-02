@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:g_news_app/views/dashboard_page.dart';
+import 'package:get/get.dart';
 // import 'package:get/get.dart';
 
 class NavDrawer extends StatefulWidget {
@@ -35,7 +37,15 @@ class _NavDrawerState extends State<NavDrawer> {
               ],
             ),
           ),
-          listCard("Home", Icons.home),
+          listCard(
+            "Home",
+            Icons.home,
+            onClicked: () {
+              print("On Home button Clicked");
+              Get.to(() => DashboardPage());
+              Navigator.of(context).pop();
+            },
+          ),
           listCard("Reading History", Icons.history),
           Divider(),
           Padding(
@@ -62,8 +72,13 @@ class _NavDrawerState extends State<NavDrawer> {
   }
 
   Widget listCard(String name, IconData svgIcon, {Function()? onClicked}) {
-    return GestureDetector(
-      onTap: onClicked,
+    return InkWell(
+      onTap: () {
+        // Wrap onClicked in an anonymous function
+        if (onClicked != null) {
+          onClicked();
+        }
+      },
       child: Container(
         padding: const EdgeInsets.all(12.0),
         child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
